@@ -6,21 +6,27 @@ NGUYỄN TIẾN ĐẠT
 
 ĐÀO CÔNG HIỆN
 
+
 Getting Started
-git clone https://github.com/DatD5/laravel-group.git
-git clone https://github.com/Laradock/laradock.git
-cd laradock
-cp .env.example .env
-docker-compose up -d nginx
+
+    git clone https://github.com/DatD5/laravel-group.git
+    git clone https://github.com/Laradock/laradock.git
+    cd laradock
+    cp .env.example .env
+    docker-compose up -d nginx
+
 Login account admin
 
-email: admin@gmail.com
-password: 123456
+    email: admin@gmail.com
+    password: 123456
+
 Login account user
 
-email: user@deha-soft.com
-password: 12345678
+    email: user@deha-soft.com
+    password: 12345678
+
 Run Project
+
 Form Register
 
 
