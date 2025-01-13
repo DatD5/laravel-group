@@ -22,8 +22,9 @@ class StoreRoleRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'name' => ['required', 'string', 'max:255'],
-            'permissions' => ['required', 'array'],
+            'name' => 'required|string|max:255',
+            'permissions' => 'required|array|min:1',  // Chắc chắn rằng trường permissions là mảng và không rỗng
+            'permissions.*' => 'exists:permissions,id', // Kiểm tra từng permission có tồn tại trong bảng permissions
         ];
     }
 }

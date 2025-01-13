@@ -9,7 +9,6 @@ use App\Http\Controllers\ProductController;
 use App\Http\Controllers\CategoryController;
 use Illuminate\Support\Facades\Auth;
 
-
 Route::get('/', function () {
     return view('welcome');
 });

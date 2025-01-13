@@ -118,10 +118,6 @@ return new class extends Migration
         app('cache')
             ->store(config('permission.cache.store') != 'default' ? config('permission.cache.store') : null)
             ->forget(config('permission.cache.key'));
-            Schema::dropIfExists('permissions'); // Thêm dòng này để xóa bảng nếu đã tồn tại.
-          
-                
-            
     }
 
     /**

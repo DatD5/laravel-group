@@ -63,12 +63,12 @@ class RoleController extends Controller
             function ($value) {
                 return (int)$value;
             },
-            $request->input('permission')
+            $request->input('permissions') // Chú ý sửa 'permission' thành 'permissions'
         );
-
+        
         $role = Role::create(['name' => $request->input('name')]);
         $role->syncPermissions($permissionsID);
-
+        
         return redirect()->route('roles.index')
             ->with('success', 'Role created successfully');
     }
@@ -97,13 +97,18 @@ class RoleController extends Controller
      */
     public function edit($id): View
     {
-        $role = Role::find($id);
-        $permission = Permission::get();
-        $rolePermissions = DB::table("role_has_permissions")->where("role_has_permissions.role_id", $id)
-            ->pluck('role_has_permissions.permission_id', 'role_has_permissions.permission_id')
-            ->all();
+       // Lấy role theo id
+    $role = Role::find($id);
 
-        return view('roles.edit', compact('role', 'permission', 'rolePermissions'));
+    // Lấy danh sách các quyền đã gán cho role
+    $rolePermissions = Permission::join("role_has_permissions", "role_has_permissions.permission_id", "=", "permissions.id")
+        ->where("role_has_permissions.role_id", $id)
+        ->get();
+
+    // Lấy tất cả các quyền có trong hệ thống để hiển thị trên form
+    $permissions = Permission::all();
+
+    return view('roles.edit', compact('role', 'rolePermissions', 'permissions'));
     }
 
     /**
@@ -123,7 +128,7 @@ class RoleController extends Controller
             function ($value) {
                 return (int)$value;
             },
-            $request->input('permission')
+            $request->input('permissions')
         );
 
         $role->syncPermissions($permissionsID);

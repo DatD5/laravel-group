@@ -35,13 +35,15 @@
                 </div>
             </div>
             <div class="col-xs-12 col-sm-12 col-md-12">
-                <div class="form-group">
+                <br class="form-group">
                     <strong>Permission:</strong>
                     <br/>
-                    @foreach($permission as $value)
-                        <label><input type="checkbox" name="permission[{{$value->id}}]" value="{{$value->id}}" class="name" {{ in_array($value->id, $rolePermissions) ? 'checked' : ''}}>
-                            {{ $value->name }}</label>
-                        <br/>
+                    @foreach($permissions as $value)
+                    <label>
+                        <input type="checkbox" name="permissions[]" value="{{ $value->id }}" class="name">
+                        {{ $value->name }}
+                    </label>
+                        </br>
                     @endforeach
                 </div>
             </div>

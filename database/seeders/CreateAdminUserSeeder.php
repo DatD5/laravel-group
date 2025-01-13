@@ -4,12 +4,11 @@ namespace Database\Seeders;
 
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
-use App\Models\User;
-use Spatie\Permission\Models\Role;
 use Spatie\Permission\Models\Permission;
+use Spatie\Permission\Models\Role;
+use App\Models\User;
 
-
-class AdminUserSeeder extends Seeder
+class CreateAdminUserSeeder extends Seeder
 {
     /**
      * Run the database seeds.
@@ -17,16 +16,19 @@ class AdminUserSeeder extends Seeder
     public function run(): void
     {
         $user = User::create([
-            'name' => 'admin Dat',
+
+            'name' => 'admin dat', 
+
             'email' => 'admin@gmail.com',
-            'password' => bcrypt('123456')
+
+            'password' => bcrypt('12345678')
+
         ]);
+
         $role = Role::create(['name' => 'Admin']);
-
         $permissions = Permission::pluck('id','id')->all();
-
         $role->syncPermissions($permissions);
+        $user->assignRole($role->name); // Gán vai trò bằng tên
 
-        $user->assignRole([$role->id]);
     }
 }
