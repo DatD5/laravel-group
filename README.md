@@ -42,7 +42,7 @@ Run Vite for development
 Login account admin
 
     email: admin@gmail.com
-    password: 123456
+    password: 12345678
 
 
 Run Project
